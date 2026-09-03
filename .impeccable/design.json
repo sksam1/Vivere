@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-10T00:00:00Z",
+  "title": "Design System: VIVERE",
+  "extensions": {
+    "colorMeta": {
+      "obsidian": { "role": "neutral", "displayName": "Obsidian", "canonical": "#12100c", "tonalRamp": ["#08070500", "#0a0906", "#12100c", "#1a1712", "#221d16", "#3a352a", "#5c5646", "#837a68"] },
+      "obsidian-deep": { "role": "neutral", "displayName": "Obsidian Deep", "canonical": "#0a0906" },
+      "panel": { "role": "neutral", "displayName": "Panel", "canonical": "#1a1712" },
+      "panel-2": { "role": "neutral", "displayName": "Panel Hover", "canonical": "#221d16" },
+      "marble": { "role": "neutral", "displayName": "Marble", "canonical": "#eae4d6", "tonalRamp": ["#12100c", "#3a352a", "#5c5646", "#837a68", "#b3ab97", "#c9c3b3", "#dbd6c8", "#eae4d6"] },
+      "marble-dim": { "role": "neutral", "displayName": "Marble Dim", "canonical": "#b3ab97" },
+      "stone": { "role": "neutral", "displayName": "Stone", "canonical": "#8f8570" },
+      "gold": { "role": "primary", "displayName": "Aged Gold", "canonical": "#c8a24c", "tonalRamp": ["#2e2210", "#4c3a19", "#6f561f", "#92702f", "#a98a3d", "#c8a24c", "#dbb968", "#e8cd83"] },
+      "gold-bright": { "role": "primary", "displayName": "Bright Gold", "canonical": "#e8cd83" },
+      "gold-deep": { "role": "primary", "displayName": "Deep Gold", "canonical": "#92702f" },
+      "line": { "role": "neutral", "displayName": "Gold Hairline", "canonical": "rgba(200,162,76,0.16)" },
+      "line-soft": { "role": "neutral", "displayName": "Marble Hairline", "canonical": "rgba(234,228,214,0.10)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and section headlines, sentence case." },
+      "display-sm": { "displayName": "Display Small", "purpose": "Sub-section headings." },
+      "label": { "displayName": "Inscriptional Label", "purpose": "Nav, buttons, form labels, section eyebrows — always uppercase, wide-tracked." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, EB Garamond." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Primary reveal/entrance easing across the site." },
+      { "name": "ease-soft", "value": "cubic-bezier(0.32, 0.72, 0, 1)", "purpose": "Button/state-transition easing, magnetic button spring feel." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid gold CTA with obsidian text and an extending hairline on hover.",
+      "html": "<button class=\"ds-btn-primary\">Begin the work</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px; background: #c8a24c; color: #12100c; font-family: 'Cinzel', Georgia, serif; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.28em; border: none; border-radius: 0; transition: background 0.5s cubic-bezier(0.32,0.72,0,1), transform 0.15s; } .ds-btn-primary:hover { background: #e8cd83; } .ds-btn-primary:focus-visible { outline: 1px solid #c8a24c; outline-offset: 3px; } .ds-btn-primary:active { transform: scale(0.98); }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Bordered secondary CTA that inverts to solid gold on hover.",
+      "html": "<button class=\"ds-btn-line\">How we work</button>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px; background: transparent; color: #c8a24c; border: 1px solid rgba(200,162,76,0.4); border-radius: 0; font-family: 'Cinzel', Georgia, serif; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.28em; transition: background 0.5s cubic-bezier(0.32,0.72,0,1), border-color 0.5s, color 0.5s; } .ds-btn-line:hover { border-color: #c8a24c; background: rgba(200,162,76,0.06); } .ds-btn-line:focus-visible { outline: 1px solid #c8a24c; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Contact-form field: flat panel background, hard edges, gold focus border.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Name</span><input class=\"ds-input\" type=\"text\" placeholder=\"\" /></label>",
+      "css": ".ds-field-label { display: block; margin-bottom: 8px; font-family: 'Cinzel', Georgia, serif; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.24em; color: #b3ab97; } .ds-input { width: 100%; background: rgba(26,23,18,0.5); border: 1px solid rgba(200,162,76,0.16); border-radius: 0; padding: 14px 16px; color: #eae4d6; font-family: 'EB Garamond', Georgia, serif; transition: background 0.3s, border-color 0.3s; } .ds-input::placeholder { color: #837a68; } .ds-input:focus { background: #1a1712; border-color: #c8a24c; outline: none; }"
+    },
+    {
+      "name": "Nav",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Fixed header: transparent at rest, blurred-obsidian on scroll, Cinzel wordmark and label-scale links.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-mark\" href=\"#top\">VIVERE</a><nav class=\"ds-nav-links\"><a href=\"#about\">About</a><a href=\"#contact\">Contact</a></nav></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 68px; padding: 0 24px; background: rgba(18,16,12,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(234,228,214,0.10); } .ds-nav-mark { font-family: 'Cinzel', Georgia, serif; font-weight: 600; font-size: 1.25rem; letter-spacing: 0.24em; color: #eae4d6; text-decoration: none; } .ds-nav-mark:hover { color: #c8a24c; } .ds-nav-links { display: flex; gap: 36px; } .ds-nav-links a { font-family: 'Cinzel', Georgia, serif; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.24em; color: #b3ab97; text-decoration: none; transition: color 0.3s; } .ds-nav-links a:hover { color: #c8a24c; }"
+    },
+    {
+      "name": "Coin",
+      "kind": "custom",
+      "refersTo": "coin",
+      "description": "Signature motif: transparent-PNG coin over a soft radial gold halo glow.",
+      "html": "<div class=\"ds-coin-wrap\"><div class=\"ds-coin-halo\"></div><img class=\"ds-coin\" src=\"/assets/coin-press-on.webp\" alt=\"Coin engraved: Press On\" /></div>",
+      "css": ".ds-coin-wrap { position: relative; display: inline-block; } .ds-coin-halo { position: absolute; inset: 0; z-index: -1; border-radius: 9999px; filter: blur(24px); background: radial-gradient(circle at 50% 46%, rgba(232,205,131,0.28) 0%, rgba(200,162,76,0.12) 34%, transparent 64%); } .ds-coin { width: 100%; height: auto; display: block; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Reliquary",
+    "overview": "VIVERE's visual system is a Roman inscriptional aesthetic applied to a wellness-coaching brand: aged gold set against near-black obsidian, restrained to the point of austerity, with every ornament earning its place the way an engraving earns a coin's face. The system is built outward from two real physical objects (the gold wordmark logo and Samuel's three bronze challenge coins), not from a mood board; type, color, and motion all justify themselves by reference to metal, stone, and inscription rather than to contemporary web trends. It explicitly rejects generic fitness-influencer visual language (neon gradients, hype-typography, stock gym photography), clinical wellness-app aesthetics (teal, checklists, soft rounded cards), and the disposable brightness of a 2026 SaaS landing page.",
+    "keyCharacteristics": [
+      "Locked dark theme: obsidian base, no light mode, no exceptions.",
+      "One accent color (gold) carrying the entire hierarchy; everything else is neutral.",
+      "Zero border-radius anywhere; every edge is a hard, cut edge.",
+      "Cinzel (display, inscriptional caps) against EB Garamond (body, humanist serif): a contrast pairing.",
+      "Motion is slow, physical, and expensive-feeling, never bouncy."
+    ],
+    "rules": [
+      { "name": "The One-Accent Rule", "body": "Gold is the only saturated color in the system. If a new element needs emphasis, it earns gold or it stays neutral; it never gets a second hue.", "section": "colors" },
+      { "name": "The No-Pure-White Rule", "body": "Text is never #fff; marble (#eae4d6) is the ceiling.", "section": "colors" },
+      { "name": "The Small-Caps-Only Rule", "body": "Cinzel at body-adjacent sizes is always uppercase with wide tracking (>=0.2em); never sentence-case running text below display size.", "section": "typography" },
+      { "name": "The No-Shadow Rule", "body": "No box-shadow appears anywhere in the system. Depth comes from background-color steps, never a drop shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep gold as the only saturated color in any new component; neutrals do everything else.",
+      "Do set all interactive text (buttons, labels, nav) in Cinzel, uppercase, >=0.2em tracking.",
+      "Do keep every corner hard (0px radius) — buttons, inputs, panels, images.",
+      "Do use tonal steps (obsidian / obsidian-deep / panel / panel-2) for depth, never a box-shadow.",
+      "Do gate every new animation behind the existing prefers-reduced-motion handling.",
+      "Do reserve numbered sequences (I/II/III, 01-04) for things that are actually ordered."
+    ],
+    "donts": [
+      "Don't introduce a second accent hue — success/error both resolve through gold + copy, not color-coding.",
+      "Don't add rounded corners, card shadows, or glassmorphic panels outside the two existing blurred-nav cases.",
+      "Don't reach for generic fitness-influencer or SaaS-marketing patterns: gradient text beyond the gold-sheen treatment, countdown urgency, stock gym photography, hero-metric stat blocks, pricing-card grids.",
+      "Don't use pure white (#fff) for text; marble (#eae4d6) is the ceiling.",
+      "Don't reuse gold for both focus and error states on the same field without another signal."
+    ]
+  }
+}
