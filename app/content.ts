@@ -13,8 +13,8 @@ export const site = {
   wordmark: "VIVERE",
   sub: "Performance & Wellness",
   coach: "Samuel Korgi",
-  url: "https://viverehp.com", // canonical origin; metadata, sitemap, robots
-  email: "hello@viverehp.com", // owner inbox (change to real address)
+  url: "https://www.viverehumanperformance.com", // canonical origin; metadata, sitemap, robots
+  email: "hello@viverehumanperformance.com", // owner inbox
   motto: "Press on. Stay the course.",
   social: {
     instagram: "https://www.instagram.com/ks_samuel1/",
@@ -211,6 +211,19 @@ export const contact = {
   lead: "Tell me where you stand and what you are building toward. I read every note and reply within a day. No mail app required.",
   motto: "Press on. Stay the course.",
 };
+
+/**
+ * The optional "focus" chips on the inquiry form. Shared deliberately: the
+ * form renders these, and the API route rejects anything not in this list, so
+ * the two can never drift into a state where a valid chip is refused.
+ */
+export const focusOptions = [
+  "Training",
+  "Mindset",
+  "Habits",
+  "Faith",
+  "Speaking",
+] as const;
 
 /* ------------------------------------------------------------------ *
  * WELLNESS CORE, the program page (/wellness-core).

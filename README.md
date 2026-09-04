@@ -54,12 +54,21 @@ House style: no em-dashes in visible copy.
 
 | File | Used for |
 |------|----------|
-| `coin-press-on.png`, `coin-stay-course.png`, `coin-philippians.png` | The three coins (hero + creed) |
-| `coach-cutout.png` | Samuel's portrait (arched niche in About) |
-| `daniel-avatar.jpg` | Testimonial avatar |
-| `vivere-logo.png` | Original gold VIVERE logo (reference / OG) |
+| `coin-press-on.webp`, `coin-stay-course.webp`, `coin-philippians.webp` | The three coins (hero + creed) |
+| `coach-cutout.webp` | Samuel's portrait (arched niche in About) |
+| `daniel-avatar.webp` | Testimonial avatar |
+| `vivere-logo.webp` | Original gold VIVERE logo (reference) |
 
-Coins are transparent circular PNGs, so they composite cleanly on the dark theme.
+Coins are transparent circular images, so they composite cleanly on the dark theme.
+
+## Social cards
+
+Link previews are generated at build time by
+[`app/lib/og-card.tsx`](app/lib/og-card.tsx), rendered per route via the
+`opengraph-image` / `twitter-image` file conventions (home and
+`/wellness-core`). Cinzel is vendored as ttf in `assets/fonts` because the
+renderer cannot read the woff2 that `next/font` caches. Editing the card is a
+code change, not an asset swap.
 
 ## Social links
 
@@ -80,10 +89,25 @@ route [`app/api/inquiry/route.ts`](app/api/inquiry/route.ts):
 
 1. Create a free account at [resend.com](https://resend.com).
 2. Add `RESEND_API_KEY` to `.env.local`, set `OWNER_EMAIL` to Samuel's inbox.
-3. Until a domain is verified in Resend, keep the sandbox `FROM_EMAIL`. After
-   verifying `viverehp.com`, switch it to `VIVERE <hello@viverehp.com>`.
+3. `viverehumanperformance.com` is verified for sending in Resend, so
+   `FROM_EMAIL` is `VIVERE <hello@viverehumanperformance.com>`. Only fall back
+   to the sandbox sender `onboarding@resend.dev` on an unverified domain.
 
 Without a key, inquiries are still validated and logged, just not emailed.
+
+### Abuse controls
+
+The endpoint spends two finite resources per call: Samuel's attention and the
+Resend send quota. It is guarded by a honeypot field, per-field length caps
+(name 100, email 254, message 5000), a 16 KB body ceiling checked before the
+JSON is parsed, and rate limits of 5 submissions per IP per 10 minutes plus a
+global 60 per hour.
+
+Those counters live in the instance's memory, so on Vercel each warm lambda
+counts separately and a cold start forgets them. That makes them a speed bump,
+not a wall. Moving the counters to Vercel KV would make the limit real, and the
+same store is what the `TODO(persistence)` in the route wants for durable
+inquiry records.
 
 ## Deploying to Vercel
 

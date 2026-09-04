@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { contact, site } from "../content";
+import { contact, focusOptions, site } from "../content";
 import Reveal from "./Reveal";
 import Social from "./Social";
 
-const focusOptions = ["Training", "Mindset", "Habits", "Faith", "Speaking"];
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 export default function Contact() {
@@ -21,6 +20,8 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
     "idle",
   );
+  /** Server-supplied failure text (rate limit, oversized body). */
+  const [notice, setNotice] = useState<string | null>(null);
 
   function update(k: keyof typeof form, v: string) {
     setForm((f) => ({ ...f, [k]: v }));
@@ -31,6 +32,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus("sending");
     setErrors({});
+    setNotice(null);
     try {
       const res = await fetch("/api/inquiry", {
         method: "POST",
@@ -43,7 +45,14 @@ export default function Contact() {
         setStatus("idle");
         return;
       }
-      if (!res.ok) throw new Error("failed");
+      if (!res.ok) {
+        // 429 (rate limited) and 413 (oversized) carry a message worth showing
+        // verbatim, so the visitor knows to wait or trim rather than retrying
+        // blindly into the same wall.
+        const data = await res.json().catch(() => null);
+        setNotice(data?.error ?? null);
+        throw new Error("failed");
+      }
       setStatus("done");
     } catch {
       setStatus("error");
@@ -88,7 +97,8 @@ export default function Contact() {
             {status === "sending" && "Sending your inquiry."}
             {status === "done" &&
               `Message received. Thank you, ${form.name.split(" ")[0] || "friend"}. We will reply within a day.`}
-            {status === "error" && "Something went wrong. Please try again."}
+            {status === "error" &&
+              (notice ?? "Something went wrong. Please try again.")}
             {status === "idle" &&
               Object.keys(errors).length > 0 &&
               "There were problems with your submission. Please review the highlighted fields."}
@@ -139,6 +149,7 @@ export default function Contact() {
                     error={errors.name}
                     autoComplete="name"
                     required
+                    maxLength={100}
                   />
                   <Field
                     label="Email"
@@ -149,6 +160,7 @@ export default function Contact() {
                     error={errors.email}
                     autoComplete="email"
                     required
+                    maxLength={254}
                   />
                 </div>
 
@@ -186,6 +198,7 @@ export default function Contact() {
                   onChange={(v) => update("message", v)}
                   error={errors.message}
                   required
+                  maxLength={5000}
                 />
 
                 <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -202,7 +215,7 @@ export default function Contact() {
                   </button>
                   {status === "error" && (
                     <p className="text-sm text-gold">
-                      Something went wrong. Please try again.
+                      {notice ?? "Something went wrong. Please try again."}
                     </p>
                   )}
                   <p className="text-xs text-stone">
@@ -228,6 +241,7 @@ function Field({
   textarea = false,
   autoComplete,
   required = false,
+  maxLength,
 }: {
   label: string;
   name: string;
@@ -238,6 +252,8 @@ function Field({
   textarea?: boolean;
   autoComplete?: string;
   required?: boolean;
+  /** Mirrors the server's cap, so a person is stopped before they submit. */
+  maxLength?: number;
 }) {
   const base =
     "w-full border bg-panel/50 px-4 py-3.5 text-marble placeholder:text-stone transition-colors duration-300 focus:bg-panel focus:outline-none";
@@ -257,6 +273,7 @@ function Field({
           onChange={(e) => onChange(e.target.value)}
           rows={4}
           required={required}
+          maxLength={maxLength}
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
           className={`${base} ${ring} resize-none`}
@@ -269,6 +286,7 @@ function Field({
           onChange={(e) => onChange(e.target.value)}
           autoComplete={autoComplete}
           required={required}
+          maxLength={maxLength}
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
           className={`${base} ${ring}`}

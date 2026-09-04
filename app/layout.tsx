@@ -45,6 +45,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "VIVERE | Performance & Wellness",
+    description:
+      "Wellness coaching rooted in discipline and faith. Press on. Stay the course.",
+  },
   robots: { index: true, follow: true },
 };
 
