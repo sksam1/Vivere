@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
 import { Resend } from "resend";
 import { focusOptions } from "../../content";
+import { allow, saveInquiry } from "../../lib/inquiry-store";
 
 export const runtime = "nodejs";
 
@@ -34,39 +33,12 @@ const MAX_BODY_BYTES = 16 * 1024;
  * hammering the form; `GLOBAL` is the backstop that keeps a distributed flood
  * from draining the daily quota before anyone notices.
  *
- * Caveat: this state lives in the instance's memory, so on Vercel each warm
- * lambda counts separately and a cold start forgets everything. That makes it
- * a speed bump, not a wall. For a real limit, move the counters to Vercel KV
- * (see TODO(persistence) below — the same store serves both needs).
+ * The counters live in the shared store, so every instance enforces the same
+ * ceiling. Without a store configured they fall back to per-instance memory,
+ * which is a speed bump rather than a wall (see `inquiry-store.ts`).
  */
 const PER_IP = { max: 5, windowMs: 10 * 60 * 1000 };
 const GLOBAL = { max: 60, windowMs: 60 * 60 * 1000 };
-
-const hits = new Map<string, number[]>();
-
-/**
- * Sliding window. Returns false once `max` timestamps sit inside the window.
- * Prunes as it goes, and sweeps the whole map when it grows, so a long-lived
- * instance under a spray of unique IPs cannot leak memory indefinitely.
- */
-function allow(key: string, { max, windowMs }: { max: number; windowMs: number }) {
-  const now = Date.now();
-
-  if (hits.size > 5000) {
-    for (const [k, times] of hits) {
-      if (times.every((t) => now - t > windowMs)) hits.delete(k);
-    }
-  }
-
-  const recent = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
-  if (recent.length >= max) {
-    hits.set(key, recent);
-    return false;
-  }
-  recent.push(now);
-  hits.set(key, recent);
-  return true;
-}
 
 /**
  * Client address. `x-forwarded-for` is set by Vercel's proxy; the left-most
@@ -91,27 +63,14 @@ function escapeHtml(s: string) {
     .replace(/"/g, "&quot;");
 }
 
-/** Always logs the inquiry so nothing is lost even if email delivery fails. */
-async function logInquiry(entry: Record<string, unknown>) {
-  try {
-    const dir = path.join(process.cwd(), ".data");
-    await fs.mkdir(dir, { recursive: true });
-    await fs.appendFile(
-      path.join(dir, "inquiries.jsonl"),
-      JSON.stringify(entry) + "\n",
-      "utf8",
-    );
-  } catch {
-    // Serverless filesystems are read-only/ephemeral — the console is the
-    // durable log there (visible in Vercel → Logs). Never throw.
-    console.log("[inquiry]", JSON.stringify(entry));
-  }
-}
-
 export async function POST(req: Request) {
   const ip = clientIp(req);
 
-  if (!allow(`ip:${ip}`, PER_IP) || !allow("global", GLOBAL)) {
+  const withinLimits =
+    (await allow(`vivere:rl:ip:${ip}`, PER_IP)) &&
+    (await allow("vivere:rl:global", GLOBAL));
+
+  if (!withinLimits) {
     console.warn(`[inquiry] rate limited ${ip}`);
     return NextResponse.json(
       { error: "Too many inquiries just now. Please try again shortly." },
@@ -174,10 +133,12 @@ export async function POST(req: Request) {
   const receivedAt = new Date().toISOString();
   const entry = { receivedAt, name, email, focus, message };
 
-  // 1) Durable log — the requirement: log name, email, and inquiry.
-  // TODO(persistence): for a permanent, queryable record in production, write
-  // `entry` to Vercel Postgres or KV here (the file log below is dev-only).
-  await logInquiry(entry);
+  // 1) Durable record. Written before the email is attempted, so a Resend
+  //    outage costs a notification, never the lead itself.
+  const storedIn = await saveInquiry(entry);
+  if (storedIn === "console") {
+    console.warn("[inquiry] record kept only in the log stream.");
+  }
 
   // 2) Notify the owner by email (no mail client needed on the visitor's end).
   const apiKey = process.env.RESEND_API_KEY;

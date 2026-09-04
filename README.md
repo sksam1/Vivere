@@ -81,9 +81,34 @@ Visitors submit **name + email + message** (plus an optional focus tag). The API
 route [`app/api/inquiry/route.ts`](app/api/inquiry/route.ts):
 
 1. **Validates** server-side and blocks bots via a honeypot.
-2. **Logs** every inquiry (name, email, message, timestamp) — to
-   `.data/inquiries.jsonl` in dev, and to server logs in production.
+2. **Stores** every inquiry (name, email, focus, message, timestamp) durably,
+   before the email is attempted, so a Resend outage costs a notification
+   rather than the lead.
 3. **Emails** the owner via Resend, with the visitor's address as `reply-to`.
+
+### Where inquiries are stored
+
+[`app/lib/inquiry-store.ts`](app/lib/inquiry-store.ts) holds both the inquiry
+records and the rate-limit counters. Both need state that outlives one
+serverless instance, so both live in Redis (Upstash, via the Vercel marketplace
+integration). It reads `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`,
+or the `KV_REST_API_*` pair, whichever the integration sets.
+
+With no store configured the module degrades rather than failing: inquiries go
+to `.data/inquiries.jsonl` and rate limiting falls back to per-instance memory.
+That keeps `npm run dev` working with no setup, and keeps a misconfigured
+deploy taking inquiries instead of dropping them. If the store is reachable but
+errors mid-request, the same fallbacks apply, so a Redis outage never takes the
+form offline.
+
+Read what has come in:
+
+```bash
+npm run inquiries        # latest 50, newest first
+npm run inquiries -- 200 # latest 200
+```
+
+It reads Redis when credentials are present and the dev file log otherwise.
 
 ### Enabling email delivery
 
@@ -103,11 +128,10 @@ Resend send quota. It is guarded by a honeypot field, per-field length caps
 JSON is parsed, and rate limits of 5 submissions per IP per 10 minutes plus a
 global 60 per hour.
 
-Those counters live in the instance's memory, so on Vercel each warm lambda
-counts separately and a cold start forgets them. That makes them a speed bump,
-not a wall. Moving the counters to Vercel KV would make the limit real, and the
-same store is what the `TODO(persistence)` in the route wants for durable
-inquiry records.
+The counters live in the shared Redis store, so every instance enforces the
+same ceiling rather than each warm lambda keeping its own. With no store
+configured they fall back to per-instance memory, which is a speed bump rather
+than a wall.
 
 ## Deploying to Vercel
 
@@ -118,10 +142,8 @@ vercel --prod   # production
 ```
 
 Add `RESEND_API_KEY`, `OWNER_EMAIL`, `FROM_EMAIL` in Vercel → Settings →
-Environment Variables. Production's filesystem is ephemeral, so the `.data`
-log isn't durable there; email + the Vercel log stream are the record. For a
-permanent inquiry store, wire the route to Vercel Postgres or KV (a `// TODO`
-marker is in the route).
+Environment Variables. The Redis credentials come from the marketplace
+integration and need no manual entry.
 
 ## Scripts
 
@@ -129,3 +151,4 @@ marker is in the route).
 - `npm run build` — production build
 - `npm start` — run the production build
 - `npm run lint` — ESLint
+- `npm run inquiries` — print stored inquiries, newest first
