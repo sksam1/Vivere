@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { testimonial } from "../content";
 import Reveal from "./Reveal";

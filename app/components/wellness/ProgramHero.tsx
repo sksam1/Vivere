@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { wellnessCore } from "../../content";
 import Reveal from "../Reveal";

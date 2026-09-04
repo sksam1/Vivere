@@ -1,5 +1,3 @@
-"use client";
-
 import { wellnessCore } from "../../content";
 import Reveal from "../Reveal";
 import MaskHeadline from "../MaskHeadline";
