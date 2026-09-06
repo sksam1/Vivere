@@ -387,7 +387,7 @@ export const modalities = {
    */
   studio: {
     title: "Your first session is on me",
-    body: "Every client is sponsored for a Wellness Studio day at a partnering gym. You pick which practices to try and we go through them together. It costs you nothing, and it is the honest way to find out what your body actually responds to before you spend a cent on any of it.",
+    body: "Every client is sponsored for a Wellness Studio day at a partnering gym. Pick any three of the practices below and we go through them together. Acupuncture is the exception: it runs the best part of an hour, so it is the only one you get that day. It costs you nothing either way, and it is the honest way to find out what your body actually responds to before you spend a cent on any of it.",
   },
   lead: "Recovery is part of the program. Every client starts with a sponsored Wellness Studio day, and what you carry on with afterwards is yours to choose. None of it replaces the work. Most clients keep one or two practices going, based on what their goals actually call for.",
   items: [
@@ -423,6 +423,11 @@ export const modalities = {
     },
     {
       n: "07",
+      name: "Compression Legs",
+      body: "Inflatable sleeves that apply sequenced pressure from the foot upward. Sessions run 20 to 30 minutes, commonly used after long training days or travel.",
+    },
+    {
+      n: "08",
       name: "Acupuncture and Dry Needling",
       body: "Fine needles used for muscular tension, mobility, and stress. Sessions run 45 to 60 minutes.",
     },
