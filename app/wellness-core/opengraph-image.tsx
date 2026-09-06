@@ -1,7 +1,7 @@
 import { ogCard, size, contentType } from "../lib/og-card";
 
 export const alt =
-  "Wellness Core. A four-phase coaching program from VIVERE, built to end, not to keep you.";
+  "Wellness Core. A three-phase performance and wellness coaching program from VIVERE.";
 export { size, contentType };
 
 export default async function Image() {
@@ -9,8 +9,8 @@ export default async function Image() {
     kicker: "Vivere Performance & Wellness",
     title: "Wellness Core",
     subtitle: [
-      "Four phases. One graduation.",
-      "A program built to end, not to keep you.",
+      "Three phases. One standard.",
+      "Coaching built around how you actually live.",
     ],
     titleSize: 96,
   });

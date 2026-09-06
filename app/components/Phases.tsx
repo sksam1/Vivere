@@ -7,8 +7,8 @@ import Reveal, { RevealGroup, revealItem } from "./Reveal";
 import MaskHeadline from "./MaskHeadline";
 
 /**
- * "We don't build dependence. We build self-reliance."
- * Four phases with a gold connector that draws across as the section enters.
+ * "Structure first. Then consistency."
+ * Three phases with a gold connector that draws across as the section enters.
  */
 export default function Phases() {
   const ref = useRef<HTMLDivElement>(null);

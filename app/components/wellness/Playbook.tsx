@@ -7,7 +7,7 @@ import MaskHeadline from "../MaskHeadline";
 
 const { playbook } = wellnessCore;
 
-/** What the client keeps. The argument against a lifetime retainer. */
+/** What the client keeps, and the point that coaching carries on after it. */
 export default function Playbook() {
   return (
     <section id="playbook" className="scroll-mt-24 py-24 md:py-32">

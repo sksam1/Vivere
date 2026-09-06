@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
 import { biomarkers } from "../../content";
-import Reveal, { RevealGroup, revealItem } from "../Reveal";
+import Reveal from "../Reveal";
 import MaskHeadline from "../MaskHeadline";
 
 /**
- * The data story, and the program's clearest differentiator.
+ * Optional bloodwork. Sits near the foot of the page because testing is an
+ * add-on to the coaching, not a condition of it.
  *
  * The disclaimer block is deliberately rendered inline and at full contrast
  * rather than as a footnote: the boundary between coaching and medical care
@@ -20,6 +20,9 @@ export default function Biomarkers() {
     >
       <div className="mx-auto max-w-[80rem] px-6 md:px-10">
         <div className="max-w-3xl">
+          <Reveal>
+            <p className="label mb-4 text-gold">{biomarkers.eyebrow}</p>
+          </Reveal>
           <MaskHeadline
             lines={[biomarkers.title]}
             className="text-[clamp(1.7rem,3.2vw,2.9rem)]"
@@ -31,34 +34,8 @@ export default function Biomarkers() {
           </Reveal>
         </div>
 
-        {/* Three touchpoints */}
-        <RevealGroup
-          as="ul"
-          className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-3"
-          stagger={0.12}
-        >
-          {biomarkers.timeline.items.map((t) => (
-            <motion.li
-              key={t.n}
-              variants={revealItem}
-              className="border-t border-gold/25 pt-6"
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <span className="numeral text-sm text-gold">{t.n}</span>
-                <span className="font-display text-[0.58rem] uppercase tracking-[0.24em] text-stone">
-                  {t.when}
-                </span>
-              </div>
-              <h3 className="font-display mt-5 text-lg uppercase tracking-[0.14em] text-marble">
-                {t.title}
-              </h3>
-              <p className="mt-4 leading-relaxed text-marble-dim">{t.body}</p>
-            </motion.li>
-          ))}
-        </RevealGroup>
-
         {/* Panel + process, side by side */}
-        <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-6" y={40}>
             <h3 className="font-display text-base uppercase tracking-[0.2em] text-gold">
               {biomarkers.panelTitle}
@@ -84,12 +61,14 @@ export default function Biomarkers() {
               {biomarkers.process.title}
             </h3>
             <ol className="mt-7 flex flex-col gap-6">
-              {biomarkers.process.items.map((p, i) => (
-                <li key={p} className="flex gap-5">
+              {biomarkers.process.items.map((item, i) => (
+                <li key={item} className="flex gap-5">
                   <span className="numeral shrink-0 text-[0.7rem] text-gold/70">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="leading-relaxed text-marble-dim">{p}</span>
+                  <span className="leading-relaxed text-marble-dim">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ol>

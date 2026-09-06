@@ -59,15 +59,15 @@ export const pillars = {
       numeral: "III",
       verb: "Fuel",
       noun: "the Future",
-      body: "Longevity and purpose. Habits that compound for career, family, and faith, not just 90-day challenges.",
+      body: "Longevity and purpose. Habits that compound for career, family, and faith, not just short challenges.",
     },
   ],
 };
 
-/** How the work moves. Four phases, clear exit criteria. */
+/** How the work moves. Three phases, each with a clear finish line. */
 export const phases = {
-  headline: ["We don't build dependence.", "We build self-reliance."],
-  lead: "Four phases. Clear exit criteria. You graduate owning your habits.",
+  headline: ["Structure first.", "Then consistency."],
+  lead: "Three phases, each with a clear finish line. The work compounds from there.",
   items: [
     {
       n: "01",
@@ -77,17 +77,12 @@ export const phases = {
     {
       n: "02",
       title: "Game Plan",
-      body: "90-day blueprint: non-negotiables, nutrition, training, mindset reps. Simple enough to do when busy.",
+      body: "A blueprint of non-negotiables: nutrition, training, mindset reps. Simple enough to do when busy.",
     },
     {
       n: "03",
       title: "Accountability",
       body: "Weekly check-ins, mindset and lifestyle coaching, habit scoring. Discipline is a team sport.",
-    },
-    {
-      n: "04",
-      title: "Self-Reliance",
-      body: "Systems over motivation. You keep the tools, the standard, and the identity. No lifetime retainer.",
     },
   ],
 };
@@ -149,7 +144,7 @@ export const tracks: {
     items: [
       {
         title: "Wellness Core",
-        body: "The flagship. Four phases over 90 days or six months, built around your health. Discovery Audit, Game Plan, Accountability, Self-Reliance.",
+        body: "The flagship. Three phases built around your health. Discovery Audit, Game Plan, Accountability.",
         href: "/wellness-core",
         cta: "See the full program",
       },
@@ -235,10 +230,10 @@ export const focusOptions = [
 export const wellnessCore = {
   label: "Wellness Core",
   eyebrow: "The flagship program",
-  headline: ["A coaching program", "designed to end."],
-  lead: "Wellness Core is four phases of performance and wellness coaching, run over 90 days or six months. Most programs are built to keep you. This one is built to graduate you.",
+  headline: ["Coaching built around", "how you actually live."],
+  lead: "Wellness Core is three phases of performance and wellness coaching, run at the pace your life actually allows. Structure first, then consistency, then a standard that holds under a real week.",
   keyLine:
-    "We don't build dependence. We build self-reliance. In 90 days, you will own your habits.",
+    "Three phases. Clear checkpoints. Habits that hold without you having to think about them.",
 
   /** Ideal client profile, turned outward. */
   who: {
@@ -265,15 +260,15 @@ export const wellnessCore = {
       "This is coaching for generally healthy adults. It is not medical treatment, and it is not a substitute for care from your physician.",
   },
 
-  /** The four phases in full. The home page carries the short version. */
+  /** The three phases in full. The home page carries the short version. */
   phases: {
-    title: "Four phases. One graduation.",
+    title: "Three phases. One standard.",
     lead: "Each phase has a job and a clear finish line. You do not move on until the one you are in is holding.",
     items: [
       {
         n: "01",
         title: "Discovery Audit",
-        window: "Week 1",
+        window: "First week",
         objective: "Find the leak, not just the goal.",
         body: "Before anything gets prescribed, we establish where you actually stand. Most people are not missing information. They are missing an honest baseline.",
         detail: [
@@ -281,15 +276,15 @@ export const wellnessCore = {
           "Habit audit across seven pillars: sleep, nutrition, movement, stress, focus, relationships, and faith.",
           "Time architecture: where your time actually goes, against where you think it goes.",
           "Values alignment: what matters most, and what your real non-negotiables are.",
-          "Baseline biomarker panel at the end of the week.",
+          "An optional baseline biomarker panel at the end of the week, if you want the numbers.",
         ],
         outcome:
-          "You leave knowing your true starting point, with the leak identified and your baseline numbers on record.",
+          "You leave knowing your true starting point, with the leak identified. If you chose to test, your baseline numbers are on record too.",
       },
       {
         n: "02",
         title: "Game Plan",
-        window: "Weeks 2 to 6",
+        window: "Early weeks",
         objective: "Simple enough to do when busy.",
         body: "A plan that only works on your best week is not a plan. We build for the week where work runs late, the kids are sick, and you are travelling.",
         detail: [
@@ -306,7 +301,7 @@ export const wellnessCore = {
       {
         n: "03",
         title: "Accountability",
-        window: "Weeks 7 to 13",
+        window: "Ongoing",
         objective: "Discipline is a team sport.",
         body: "This is the phase where most people quit on their own. Weekly contact is what turns a good plan into a lived one.",
         detail: [
@@ -315,72 +310,20 @@ export const wellnessCore = {
           "Problem-solving the real barriers: motivation dips, schedule collisions, social pressure, cravings.",
           "Identity work. The difference between “I am someone who sleeps eight hours” and “I try to sleep eight hours.”",
           "Environment design, so the good choice becomes the easy choice.",
-          "An optional biomarker check around day 60 to confirm the plan is working.",
+          "An optional biomarker check partway through, to confirm the plan is working.",
+          "Your written playbook, delivered and walked through in full.",
+          "An optional final panel at the end, set against where you started.",
         ],
         outcome:
-          "You leave with habits holding steady and visible change in energy, sleep, or mood.",
-      },
-      {
-        n: "04",
-        title: "Self-Reliance",
-        window: "Week 14 onward",
-        objective: "Systems over motivation.",
-        body: "Contact deliberately drops off. You start running the protocol yourself while support is still within reach, rather than after it disappears.",
-        detail: [
-          "Monthly 30-minute check-ins while you self-monitor.",
-          "Quarterly reviews once the basics are automatic.",
-          "Final biomarker panel, compared against your baseline.",
-          "Your Graduation Playbook, delivered and walked through in full.",
-        ],
-        outcome:
-          "You leave owning it. No lifetime retainer, and an open door if life derails you later.",
+          "You come out of the block with habits holding steady, a written playbook in hand, and visible change in energy, sleep, or mood.",
       },
     ],
   },
 
-  /** 3-month vs 6-month. Rendered as a table on desktop, cards on mobile. */
-  durations: {
-    title: "Choose your depth.",
-    lead: "The same four phases, run at two different speeds. One is not a lesser version of the other, they suit different people.",
-    a: {
-      name: "3 Month",
-      badge: "Intensive",
-      summary:
-        "High motivation, clear goals, and a reason to move now. Compressed, weekly throughout, roughly 25 to 30 coaching hours.",
-    },
-    b: {
-      name: "6 Month",
-      badge: "Comprehensive",
-      summary:
-        "Deeper transformation and habit mastery, with a gradual handover. Roughly 40 to 50 coaching hours.",
-    },
-    rows: [
-      { label: "Discovery Audit", a: "Week 1", b: "Week 1" },
-      { label: "Game plan design", a: "Weeks 1 to 2, fast", b: "Weeks 2 to 6, extended and refined" },
-      { label: "Accountability phase", a: "Weeks 2 to 8, weekly", b: "Weeks 7 to 13, weekly" },
-      { label: "Biomarker testing", a: "Baseline and final", b: "Baseline, mid-point, and final" },
-      { label: "Final panel", a: "Week 12", b: "Week 24" },
-      { label: "Self-reliance transition", a: "Weeks 9 to 12", b: "Weeks 14 to 20" },
-      { label: "Check-in frequency", a: "Weekly throughout", b: "Weekly, then monthly" },
-      { label: "Recovery practices", a: "One or two, chosen", b: "Three or four, integrated" },
-      { label: "Coaching hours", a: "25 to 30", b: "40 to 50" },
-      {
-        label: "Best for",
-        a: "Clear goals and a deadline",
-        b: "Deep change and long-term mastery",
-      },
-      {
-        label: "At graduation",
-        a: "Habits established, playbook ready",
-        b: "Habits deeply set, advanced autonomy",
-      },
-    ],
-  },
-
-  /** The graduation playbook. */
+  /** The playbook every client leaves the block with. */
   playbook: {
     title: "What you walk away with",
-    lead: "Every client graduates with a written playbook in their own terms, not a login that expires.",
+    lead: "Every client comes out of the block with a written playbook in their own terms, not a login that expires.",
     items: [
       "Your nutrition rules: what to eat, what to avoid, and when.",
       "Your training protocol, scaled for busy weeks and good ones.",
@@ -389,14 +332,14 @@ export const wellnessCore = {
       "A maintenance plan for any recovery practices you kept.",
       "A quarterly self-audit checklist, so you can catch yourself drifting.",
     ],
-    close: "You now own this. You don't need me anymore.",
-    door: "And if life derails you a year from now, the door is open for a four-week tune-up.",
+    close: "You own this now, and you are not left on your own with it.",
+    door: "Coaching carries on at whatever cadence fits, whether that is a standing weekly slot or a four-week tune-up when life knocks you off the line.",
   },
 
   /** Pricing posture. No numbers exist in the framework yet. */
   investment: {
     title: "Investment",
-    lead: "Programs are priced to scope, because a three-month intensive and a six-month build are not the same commitment. Tell me where you stand and I will send the detail.",
+    lead: "Programs are priced to scope, because no two clients need the same depth or the same pace. Tell me where you stand and I will send the detail.",
     notes: [
       "Lab work is ordered and billed through the lab directly, not through coaching.",
       "Recovery practices are optional and paid to the provider you choose.",
@@ -407,47 +350,23 @@ export const wellnessCore = {
 
 /** Biomarker testing. Framed as education, never as diagnosis. */
 export const biomarkers = {
+  eyebrow: "Optional",
   title: "Data, not guesswork.",
-  lead: "Most coaching runs on how you say you feel. Wellness Core runs on that plus what your bloodwork says, measured at the start and again at the end, so progress is demonstrated rather than assumed.",
+  lead: "Most coaching runs on how you say you feel. If you want more than that, bloodwork gives you something to measure against, so progress is demonstrated rather than assumed. It is entirely optional. Plenty of clients run the program without ever testing, and it works.",
   panelTitle: "What gets measured",
   panel: [
     "Metabolic markers: fasting glucose, insulin, and a full lipid panel.",
-    "Thyroid function: TSH, free T3, and free T4.",
-    "Hormonal status, selected against your goals.",
+    "Thyroid function and hormonal status, selected against your goals.",
     "Inflammation markers: hs-CRP and homocysteine.",
     "Micronutrient status: vitamin D, B12, folate, and iron.",
-    "Additional optimization markers where your goals call for them.",
+    "Anything further your goals call for.",
   ],
-  timeline: {
-    title: "Three touchpoints",
-    items: [
-      {
-        n: "01",
-        title: "Baseline",
-        when: "Week 1",
-        body: "Run only if you have not had comprehensive blood work in the last four to five months. Recent results can serve as your baseline instead.",
-      },
-      {
-        n: "02",
-        title: "Mid-point",
-        when: "Around day 60",
-        body: "A shorter check to confirm the plan is moving the markers it should. Standard on the six-month program, optional on the three.",
-      },
-      {
-        n: "03",
-        title: "Final",
-        when: "Final week",
-        body: "A full repeat of the baseline panel, set side by side with where you started.",
-      },
-    ],
-  },
   process: {
     title: "How it works",
     items: [
-      "You order your panel through a certified lab. I will point you to the right one and the right markers.",
-      "Lab costs are billed by the lab, separately from coaching.",
+      "You order your panel through a certified lab. I will point you to the right one and the right markers, and the lab bills you directly.",
       "We sit down together and go through what each marker means for your energy, training, and recovery.",
-      "Your nutrition and training get adjusted against what the results show.",
+      "Your nutrition and training get adjusted against what the results actually show.",
     ],
   },
   /** The framing that keeps this educational. Rendered inline, not buried. */
@@ -461,8 +380,16 @@ export const biomarkers = {
 
 /** Optional recovery practices. Education and referral only. */
 export const modalities = {
-  title: "Recovery, if you want it.",
-  lead: "These are optional. None of them are required to complete the program, and none of them replace the work. Clients choose one or two on the three-month track and three or four over six months, based on what their goals actually call for.",
+  title: "Recovery, built in.",
+  /**
+   * The one part of this section that is not optional, and the reason the rest
+   * is easy to choose from: everyone tries before they buy.
+   */
+  studio: {
+    title: "Your first session is on me",
+    body: "Every client is sponsored for a Wellness Studio day at a partnering gym. You pick which practices to try and we go through them together. It costs you nothing, and it is the honest way to find out what your body actually responds to before you spend a cent on any of it.",
+  },
+  lead: "Recovery is part of the program. Every client starts with a sponsored Wellness Studio day, and what you carry on with afterwards is yours to choose. None of it replaces the work. Most clients keep one or two practices going, based on what their goals actually call for.",
   items: [
     {
       n: "01",

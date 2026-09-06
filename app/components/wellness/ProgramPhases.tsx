@@ -9,7 +9,7 @@ import MaskHeadline from "../MaskHeadline";
 const { phases } = wellnessCore;
 
 /**
- * The four phases in full. The home page carries a one-line summary of each;
+ * The three phases in full. The home page carries a one-line summary of each;
  * this is the long form. The gold rail draws down as the section scrolls,
  * the vertical counterpart of the connector in the home Phases section.
  */

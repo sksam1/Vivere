@@ -5,7 +5,6 @@ import ProgramHero from "../components/wellness/ProgramHero";
 import WhoFor from "../components/wellness/WhoFor";
 import ProgramPhases from "../components/wellness/ProgramPhases";
 import Biomarkers from "../components/wellness/Biomarkers";
-import Durations from "../components/wellness/Durations";
 import Modalities from "../components/wellness/Modalities";
 import Playbook from "../components/wellness/Playbook";
 import Investment from "../components/wellness/Investment";
@@ -14,12 +13,12 @@ import DisclosureStrip from "../components/wellness/DisclosureStrip";
 export const metadata: Metadata = {
   title: "Wellness Core",
   description:
-    "A four-phase performance and wellness coaching program, run over 90 days or six months. Discovery Audit, Game Plan, Accountability, Self-Reliance. Clear exit criteria and no lifetime retainer.",
+    "A three-phase performance and wellness coaching program. Discovery Audit, Game Plan, Accountability. Optional biomarker testing and a sponsored wellness studio day.",
   alternates: { canonical: "/wellness-core" },
   openGraph: {
     title: "Wellness Core | Vivere Performance & Wellness",
     description:
-      "Four phases. One graduation. A coaching program built to end, not to keep you.",
+      "Three phases. One standard. Coaching built around how you actually live.",
     url: "/wellness-core",
     type: "article",
   },
@@ -32,12 +31,11 @@ export default function WellnessCorePage() {
       <main id="top">
         <ProgramHero />
         <WhoFor />
-        <ProgramPhases />
-        <Biomarkers />
-        <Durations />
         <Modalities />
+        <ProgramPhases />
         <Playbook />
         <Investment />
+        <Biomarkers />
         <DisclosureStrip />
       </main>
       <Footer />

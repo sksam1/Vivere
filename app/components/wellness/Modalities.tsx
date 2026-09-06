@@ -31,6 +31,20 @@ export default function Modalities() {
           </Reveal>
         </div>
 
+        {/* The sponsored studio day. Sits above the list because it is the one
+            part of this section that is included, and the way most clients
+            first meet any of it. */}
+        <Reveal delay={0.16}>
+          <div className="mt-12 border border-gold/25 bg-panel/40 p-8 md:p-10">
+            <p className="font-display text-[0.66rem] uppercase tracking-[0.26em] text-gold">
+              {modalities.studio.title}
+            </p>
+            <p className="mt-5 max-w-3xl text-lg leading-relaxed text-marble">
+              {modalities.studio.body}
+            </p>
+          </div>
+        </Reveal>
+
         <RevealGroup
           as="ul"
           className="mt-16 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"
