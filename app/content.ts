@@ -184,8 +184,8 @@ export const about = {
   title: "The man behind the mark",
   paragraphs: [
     "VIVERE is led by Samuel Korgi, a lifelong advocate in the world of performance and wellness. His practice is rooted in psychology, mindset, and proven strategy, and in a simple belief: people are capable of far more than they settle for.",
-    "Born in Decatur, Georgia, his foundation was shaped by family, faith in Christ, education, and sport. Soccer carried him to international competition as a teenager and, in time, to the collegiate level, where discipline stopped being a word and became a way of living.",
-    "He earned a Bachelor of Business and continued through professional programs with UPenn and Dartmouth. Beyond the field and the classroom, his interests in writing, psychology, and wellness continue to shape how he coaches: the whole person, body and mind, held to a standard.",
+    "Born in Decatur, Georgia, his foundation was shaped by family, faith in Christ, and sport. Soccer carried him to international competition growing up and, in time, to the collegiate level, where discipline and performance became a way of life.",
+    "He earned a Bachelor of Business and continued through professional programs with UPenn and Dartmouth. Beyond the field and the classroom, his interests in writing, psychology, and wellness continue to shape how he shows up: the whole person, body and mind, held to a standard.",
   ],
   mission:
     "To raise the quality of a life through discipline, faith, and habits built to last.",
