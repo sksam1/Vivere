@@ -35,7 +35,7 @@ export const ethos = {
   latin: "vī·ve·re",
   translation: "Latin. To live.",
   headline: ["Health as the core.", "Discipline as the edge."],
-  body: "VIVERE is wellness coaching for those who want to stop starting over. We forge the body, fortify the mind, and fuel the future with habits that last.",
+  body: "VIVERE is performance coaching for those who want to stop starting over. We forge the body, fortify the mind, and fuel the future with habits that last.",
   line: "Not just coaching. Lifestyle, health, and values, forged together.",
 };
 
