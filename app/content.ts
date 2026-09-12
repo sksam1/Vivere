@@ -143,8 +143,8 @@ export const tracks: {
     badge: "Foundation",
     items: [
       {
-        title: "Core",
-        body: "The flagship. Three phases built around your health. Discovery Audit, Game Plan, Accountability.",
+        title: "The Flagship",
+        body: "Three phases built around your health. Discovery Audit, Game Plan, Accountability.",
         href: "/wellness-core",
         cta: "See the full program",
       },

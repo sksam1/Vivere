@@ -12,7 +12,7 @@ const links: SiteLinkTarget[] = [
   { label: "Disciplines", hash: "#disciplines" },
   { label: "How We Work", hash: "#process" },
   { label: "Coins", hash: "#creed" },
-  { label: "Wellness Core", path: "/wellness-core" },
+  { label: "Core", path: "/wellness-core" },
   { label: "About", hash: "#about" },
 ];
 
