@@ -138,12 +138,12 @@ export const tracks: {
   lead: "Track A is the foundation. Track B is for those who want the edge carried into business and teams.",
   a: {
     label: "Track A",
-    name: "Wellness Core",
+    name: "Core",
     weight: "80%",
     badge: "Foundation",
     items: [
       {
-        title: "Wellness Core",
+        title: "Core",
         body: "The flagship. Three phases built around your health. Discovery Audit, Game Plan, Accountability.",
         href: "/wellness-core",
         cta: "See the full program",
@@ -164,7 +164,7 @@ export const tracks: {
   },
   b: {
     label: "Track B",
-    name: "Performance Extension",
+    name: "Extension",
     weight: "20%",
     badge: "Edge",
     items: [
@@ -183,7 +183,7 @@ export const tracks: {
 export const about = {
   title: "The man behind the mark",
   paragraphs: [
-    "VIVERE is led by Samuel Korgi, a lifelong advocate in the world of wellness and human performance. His practice is rooted in psychology, empathy, and proven strategy, and in a simple belief: people are capable of far more than they settle for.",
+    "VIVERE is led by Samuel Korgi, a lifelong advocate in the world of performance and wellness. His practice is rooted in psychology, mindset, and proven strategy, and in a simple belief: people are capable of far more than they settle for.",
     "Born in Decatur, Georgia, his foundation was shaped by family, faith in Christ, education, and sport. Soccer carried him to international competition as a teenager and, in time, to the collegiate level, where discipline stopped being a word and became a way of living.",
     "He earned a Bachelor of Business and continued through professional programs with UPenn and Dartmouth. Beyond the field and the classroom, his interests in writing, psychology, and wellness continue to shape how he coaches: the whole person, body and mind, held to a standard.",
   ],
